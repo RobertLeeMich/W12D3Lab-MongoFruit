@@ -6,17 +6,17 @@ class Index extends React.Component {
     const { fruits } = this.props
     return(
       <div>
-        <h1> Fruits Index Page </h1>
+        <h1> Fruits Index Page! </h1>
         <nav>
-          <a href = "/fruits/New">Create a new fruit</a>
+          <a href="/fruits/new">Create a New Fruit</a>
         </nav>
         <ul>
           {
             fruits.map((fruit, i) => {
               return (
-                <li key = "">
+                <li key={i}>
                   The{' '}
-                    <a href={`/fruits/${i}`}>
+                    <a href={`/fruits/${fruit._id}`}>
                       {fruit.name}
                     </a>
                     {' '}
@@ -27,7 +27,7 @@ class Index extends React.Component {
                       : 
                         `It is not ready to eat`
                     }
-                    <br />
+                                      <br />
                 </li>
               )
             })

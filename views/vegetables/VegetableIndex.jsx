@@ -14,9 +14,9 @@ class VegetableIndex extends React.Component {
           {
             vegetables.map((vegetable, i) => {
               return (
-                <li>
+                <li key = {i} >
                   The{' '}
-                    <a href={`/vegetables/${i}`}>
+                    <a href={`/vegetables/${vegetable._id}`}>
                       {vegetable.name}
                     </a>
                     {' '}

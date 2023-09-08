@@ -51,7 +51,7 @@ app.get('/vegetables', async (req, res) => {
     const foundVegetables = await Vegetable.find({})
     //it always returns an array, even if it's empty, it will return an empty array
     //PLURAL FRUITS! because we are looking for the key of FRUITS not FRUIT
-    res.status(201).render("vegetables/Index", { vegetables: foundVegetables })
+    res.status(201).render("vegetables/VegetableIndex", { vegetables: foundVegetables })
   } catch (err) {
     res.status(400).send(err)
   }
@@ -103,7 +103,7 @@ app.post('/vegetables', async (req, res) => {
 
     const createdVegetables = await Vegetable.create(req.body);
 
-    res.status(201).redirect("/fruits")
+    res.status(201).redirect("/vegetables")
   } catch (err) {
     res.status(400).send(err)
   }
@@ -127,10 +127,18 @@ app.get('/fruits/:id', async (req, res) => {
 });
 
 //Vegetable Show route
-app.get("/vegetables/:id", (req, res) => {
-  res.render("vegetables/ShowVegetable", {vegetable: vegetables[req.params.id]})
+app.get("/vegetables/:id", async (req, res) => {
+  try {
+    //references ID in URL bar
+    const foundVegetables = await Vegetable.findById(req.params.id)
 
-})
+    res.render("vegetables/ShowVegetable", {
+      vegetable: foundVegetables
+    })
+  } catch (err){
+    res.status(400).send(err)
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);

@@ -14,7 +14,7 @@ const vegSchema = new mongoose.Schema({
 })
 
 //model for fruit that uses the fruitSchema, this allows us to manipulate items in MongoDB.
-const Fruit = mongoose.model("Fruit", vegSchema)
+const Vegetable = mongoose.model("Vegetable", vegSchema)
 
 //exporting this to other files to interact with DB
 module.exports = Vegetable
